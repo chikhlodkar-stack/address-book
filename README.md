@@ -1,77 +1,66 @@
-### Address Book API (FastAPI & SQLite)
+# Address Book API (FastAPI & SQLite)
 
-## Table of Contents:
-1. Overview
-2. Features
-3. Tech Stack
-4. Project Structure
-5. Setup and Installation
-6. Prerequisites
-    Option 1: Using Docker Compose (Recommended)
-    Option 2: Local Setup with Poetry
-7. Running the Application
-8. API Endpoints
-9. Testing
-10. Design Decisions & Best Practices
-11. Future Enhancements
-12. Author
+## **Table of Contents**
 
---------------------------------------------------------------------------------------------------
+1.  [Overview](#1-overview)
+2.  [Features](#2-features)
+3.  [Tech Stack](#3-tech-stack)
+4.  [Project Structure](#4-project-structure)
+5.  [Setup and Installation](#5-setup-and-installation)
+    *   [Prerequisites](#prerequisites)
+    *   [Option 1: Using Docker Compose (Recommended)](#option-1-using-docker-compose-recommended)
+    *   [Option 2: Local Setup with Poetry](#option-2-local-setup-with-poetry)
+6.  [Running the Application](#6-running-the-application)
+7.  [API Endpoints](#7-api-endpoints)
+8.  [Testing](#8-testing)
+9.  [Design Decisions & Best Practices](#9-design-decisions--best-practices)
+10. [Future Enhancements](#10-future-enhancements)
+11. [Author](#11-author)
 
-## 1. Overview
+---
+
+## **1. Overview**
 
 This project implements a minimal Address Book API built with FastAPI. It allows users to manage addresses, including creating, retrieving, updating, and deleting records. A key feature is the ability to query for addresses located within a specified geographic distance from a given point. The application uses an SQLite database for storage and is designed with clean architecture principles, automated testing, and Docker containerization for easy deployment.
 
-## 2. Features
+## **2. Features**
 
-* Address Management (CRUD):
-POST /api/v1/addresses/: Create a new address with name, latitude, and longitude.
-GET /api/v1/addresses/{address_id}: Retrieve a single address by its unique ID.
-PUT /api/v1/addresses/{address_id}: Update an existing address.
-DELETE /api/v1/addresses/{address_id}: Delete an address record.
+*   **Address Management (CRUD):**
+    *   `POST /api/v1/addresses/`: Create a new address with name, latitude, and longitude.
+    *   `GET /api/v1/addresses/{address_id}`: Retrieve a single address by its unique ID.
+    *   `PUT /api/v1/addresses/{address_id}`: Update an existing address.
+    *   `DELETE /api/v1/addresses/{address_id}`: Delete an address record.
+*   **Geospatial Query:**
+    *   `GET /api/v1/addresses/nearby`: Retrieve all addresses within a specified `radius_km` from a given `latitude` and `longitude`.
+*   **Data Validation:** All incoming address data (latitude and longitude ranges) is validated using Pydantic.
+*   **SQLite Database:** Persistent storage for address records.
+*   **Interactive API Documentation:** Automatically generated Swagger UI and ReDoc by FastAPI.
+*   **Robust Logging:** Structured logging for application events and requests.
+*   **Automated Testing:** Comprehensive unit and integration tests using `pytest`.
+*   **Containerization:** Dockerfile and Docker Compose setup for reproducible environments and easy deployment.
 
-* Geospatial Query:
-GET /api/v1/addresses/nearby: Retrieve all addresses within a specified radius_km from a given latitude and longitude.
+## **3. Tech Stack**
 
-* Data Validation:
-All incoming address data (latitude and longitude ranges) is validated using Pydantic.
+*   **Python 3.12+**: The core programming language.
+*   **FastAPI**: High-performance web framework for building APIs.
+*   **Pydantic**: Data validation and settings management (integrated with FastAPI).
+*   **SQLAlchemy**: Python SQL toolkit and Object-Relational Mapper (ORM) for database interactions.
+*   **Alembic**: Lightweight database migration tool for SQLAlchemy.
+*   **GeoPy**: Library for geodesic distance calculations (used for the "nearby" feature).
+*   **Poetry**: Dependency management and packaging.
+*   **Pytest**: Testing framework.
+*   **HTTPX**: Asynchronous HTTP client for API testing.
+*   **Uvicorn**: ASGI server to run the FastAPI application.
+*   **Ruff**: An extremely fast Python linter and formatter.
+*   **Docker / Docker Compose**: For containerization and easy local deployment.
 
-* SQLite Database:
-Persistent storage for address records.
-
-* Interactive API Documentation:
-Automatically generated Swagger UI and ReDoc by FastAPI.
-
-* Robust Logging:
-Structured logging for application events and requests.
-
-* Automated Testing:
-Comprehensive unit and integration tests using pytest.
-
-* Containerization:
-Dockerfile and Docker Compose setup for reproducible environments and easy deployment.
-
-## 3. Tech Stack
-
-Python 3.12+: The core programming language.
-FastAPI: High-performance web framework for building APIs.
-Pydantic: Data validation and settings management (integrated with FastAPI).
-SQLAlchemy: Python SQL toolkit and Object-Relational Mapper (ORM) for database interactions.
-Alembic: Lightweight database migration tool for SQLAlchemy.
-GeoPy: Library for geodesic distance calculations (used for the "nearby" feature).
-Poetry: Dependency management and packaging.
-Pytest: Testing framework.
-HTTPX: Asynchronous HTTP client for API testing.
-Uvicorn: ASGI server to run the FastAPI application.
-Ruff: An extremely fast Python linter and formatter.
-Docker / Docker Compose: For containerization and easy local deployment.
-
-## 4. Project Structure
+## **4. Project Structure**
 
 The project follows a modular and layered architecture to separate concerns, making it maintainable and scalable.
 
+```text
 address-book-api/
-├── .dockerignore                 # Specifies files/folders to exclude from Docker image
+├── .dockerignore                 # Files/folders to exclude from Docker image
 ├── .env                          # Environment variables (local dev, ignored by Git)
 ├── .gitignore                    # Files/folders ignored by Git
 ├── alembic/                      # Alembic migrations directory
@@ -277,5 +266,5 @@ This project adheres to several best practices for building robust and maintaina
 ## 11. Author
 
 Ajinkya Chikhlodkar
-[Your GitHub Profile Link, if you wish]
+(https://github.com/chikhlodkar-stack)
 

@@ -105,43 +105,40 @@ address-book-api/
         ├── __init__.py
         └── test_addresses.py     # Tests for Address CRUD and geospatial features
 
-## 5. Setup and Installation
+## **5. Setup and Installation**
 
-* Prerequisites
+### **Prerequisites**
 
 Ensure you have the following installed on your system:
-Git: For cloning the repository.
-Python 3.12+: For local development (check python3 --version).
-Poetry: Python dependency manager (install with pip install poetry).
-Docker Desktop: For running the application using containers.
 
-# Option 1: Using Docker Compose (Recommended)
+*   **Git**: For cloning the repository.
+*   **Python 3.12+**: For local development (check `python3 --version`).
+*   **Poetry**: Python dependency manager (install with `pip install poetry`).
+*   **Docker Desktop**: For running the application using containers.
+
+### **Option 1: Using Docker Compose (Recommended)**
 
 This is the easiest and most reliable way to get the application running, as it sets up all dependencies and the environment automatically.
 
-* 1. Clone the repository:
-```python
-git clone https://github.com/your-username/address-book-api.git
-cd address-book-api
-```
-
-* 2. Build the Docker image:
-```python
-docker-compose build
-```
-
-* 3. Start the services: This will create the db_data volume, run Alembic migrations to create the address_book.db file and addresses table inside the volume, and start the FastAPI application.
-``` python
-docker-compose up
-# Or to run in detached mode (in the background):
-# docker-compose up -d
-```
-
-* 4. The API will be available at http://localhost:8000. The interactive documentation (Swagger UI) is at http://localhost:8000/docs.
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/your-username/address-book-api.git
+    cd address-book-api
+    ```
+2.  **Build the Docker image:**
+    ```bash
+    docker-compose build
+    ```
+3.  **Start the services:** This will create the `db_data` volume, run Alembic migrations to create the `address_book.db` file and `addresses` table inside the volume, and start the FastAPI application.
+    ```bash
+    docker-compose up
+    # Or to run in detached mode (in the background):
+    # docker-compose up -d
+    ```
+4.  The API will be available at `http://localhost:8000`. The interactive documentation (Swagger UI) is at `http://localhost:8000/docs`.
 
 To stop the services:
-
-```python
+```bash
 docker-compose down
 # To stop and remove the persistent database volume (for a clean slate):
 # docker-compose down -v

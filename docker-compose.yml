@@ -1,0 +1,24 @@
+
+
+services:
+  web:
+    build: . # Build the image from the Dockerfile in the current directory
+    ports:
+      - "8000:8000" # Map host port 8000 to container port 8000
+    volumes:
+      # Mount a named volume for persistent storage of the SQLite database
+      # 'db_data:/app/data' means host volume 'db_data' maps to container path '/app/data'
+      - db_data:/app/data
+    environment:
+      # Override the default DATABASE_URL to point inside the mounted volume
+      # The SQLite database file will be at /app/data/address_book.db inside the container
+      - DATABASE_URL=sqlite:////app/data/address_book.db
+      - ENVIRONMENT=development # Or 'production' for a production deployment
+    # Command to run alembic migrations once before starting the app
+    # This ensures the database is set up or updated when the service starts
+    command: >
+      sh -c "/app/.venv/bin/python -m alembic upgrade head &&
+             /app/.venv/bin/python -m uvicorn app.main:app --host 0.0.0.0 --port 8000"
+
+volumes:
+  db_data: # Define the named volume for database persistence

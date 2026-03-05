@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual Environment
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+
+# Database
+*.db* # This will cover address_book.db, test.db, and any journals/wal files
+alembic/versions/*.pyc # Ignore compiled migration files
+
+# Environment variables
+.env
